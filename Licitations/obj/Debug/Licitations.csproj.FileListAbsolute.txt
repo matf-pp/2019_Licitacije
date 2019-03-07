@@ -1,0 +1,10 @@
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/bin/Debug/Licitations.exe.config
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/bin/Debug/Licitations.exe
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/bin/Debug/Licitations.pdb
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/obj/Debug/Licitations.csprojAssemblyReference.cache
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/obj/Debug/Licitations.Form1.resources
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/obj/Debug/Licitations.Properties.Resources.resources
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/obj/Debug/Licitations.csproj.GenerateResource.cache
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/obj/Debug/Licitations.csproj.CoreCompileInputs.cache
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/obj/Debug/Licitations.exe
+/home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitations/obj/Debug/Licitations.pdb
