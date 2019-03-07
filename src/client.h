@@ -1,3 +1,5 @@
+#ifndef CLIENT
+#define CLIENT
 #include<string>
 #include<vector>
 
@@ -10,4 +12,7 @@ public:
     Client() { }
     ~Client(){}
     Client
-}
+};
+Client::Client(){}
+Client::~Client(){}
+#endif

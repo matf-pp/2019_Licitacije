@@ -1,3 +1,5 @@
+#ifndef ITEM
+#define ITEM
 #include<string>
 #include<time.h>
 
@@ -8,3 +10,6 @@ struct Item
     string names;
     tm ending_time;    
 };
+Item::Item(){}
+Item::~Item(){}
+#endif

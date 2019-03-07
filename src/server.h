@@ -1,3 +1,5 @@
+#ifndef SERVER
+#define SERVER
 #include "subserver.h"
 #include "client.h"
 #include "item.h"
@@ -21,3 +23,4 @@ public:
  Server:: Server()
 {
 }
+#endif

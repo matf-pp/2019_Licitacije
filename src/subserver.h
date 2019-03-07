@@ -1,3 +1,5 @@
+#ifndef SUBSERVER
+#define SUBSERVER
 #include <vector>
 #include "item.h"
 #include "client.h"
@@ -21,3 +23,4 @@ Subserver::Subserver(/* args */)
 Subserver::~Subserver()
 {
 }
+#endif
