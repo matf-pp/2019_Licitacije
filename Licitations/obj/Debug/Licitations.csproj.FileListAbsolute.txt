@@ -1,0 +1,10 @@
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\bin\Debug\Licitations.exe.config
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\bin\Debug\Licitations.exe
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\bin\Debug\Licitations.pdb
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\obj\Debug\Licitations.csprojAssemblyReference.cache
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\obj\Debug\Licitations.Form1.resources
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\obj\Debug\Licitations.Properties.Resources.resources
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\obj\Debug\Licitations.csproj.GenerateResource.cache
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\obj\Debug\Licitations.csproj.CoreCompileInputs.cache
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\obj\Debug\Licitations.exe
+C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitations\obj\Debug\Licitations.pdb
