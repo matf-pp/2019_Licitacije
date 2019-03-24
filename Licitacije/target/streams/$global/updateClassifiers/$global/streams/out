@@ -282,21 +282,51 @@
 [debug] == resolving dependencies default#licitacije$sources;0.1->jline#jline;2.14.6 [scala-tool->master]
 [debug] 	resolved ivy file produced in cache
 [debug] :: downloading artifacts ::
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.8!scala-compiler.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(src)
-[debug] 	[NOT REQUIRED] jline#jline;2.14.6!jline.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-reflect;2.12.8!scala-reflect.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.12.8!scala-library.jar(src)
-[debug] :: resolution report :: resolve 22ms :: artifacts dl 4ms
-[debug] 	report for default#licitacije$sources;0.1 compile produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-compile.xml
-[debug] 	report for default#licitacije$sources;0.1 runtime produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-runtime.xml
-[debug] 	report for default#licitacije$sources;0.1 test produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-test.xml
-[debug] 	report for default#licitacije$sources;0.1 provided produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-provided.xml
-[debug] 	report for default#licitacije$sources;0.1 optional produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-optional.xml
-[debug] 	report for default#licitacije$sources;0.1 compile-internal produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-compile-internal.xml
-[debug] 	report for default#licitacije$sources;0.1 runtime-internal produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-runtime-internal.xml
-[debug] 	report for default#licitacije$sources;0.1 test-internal produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-test-internal.xml
-[debug] 	report for default#licitacije$sources;0.1 plugin produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-plugin.xml
-[debug] 	report for default#licitacije$sources;0.1 pom produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-pom.xml
-[debug] 	report for default#licitacije$sources;0.1 scala-tool produced in /home/tigarzmaj/Desktop/Ognjen/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije$sources-scala-tool.xml
-[debug] 	resolve done (22ms resolve - 4ms download)
+[debug] 		tried C:\Users\Car\.ivy2\local\jline\jline\2.14.6\srcs\jline-sources.jar
+[debug] 		tried C:\Users\Car\.ivy2\local\org.scala-lang.modules\scala-xml_2.12\1.0.6\srcs\scala-xml_2.12-sources.jar
+[debug] 		tried C:\Users\Car\.ivy2\local\org.scala-lang\scala-compiler\2.12.8\srcs\scala-compiler-sources.jar
+[debug] 		tried C:\Users\Car\.ivy2\local\org.scala-lang\scala-reflect\2.12.8\srcs\scala-reflect-sources.jar
+[debug] 		tried C:\Users\Car\.ivy2\local\org.scala-lang\scala-library\2.12.8\srcs\scala-library-sources.jar
+[debug] 		tried https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.8/scala-compiler-2.12.8-sources.jar
+[debug] 		tried https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6-sources.jar
+[debug] 		tried https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.8/scala-reflect-2.12.8-sources.jar
+[debug] 		tried https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.8/scala-library-2.12.8-sources.jar
+[debug] 		tried https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-sources.jar
+[info] downloading https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6-sources.jar ...
+[debug] 	public: downloading https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6-sources.jar
+[info] downloading https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.8/scala-reflect-2.12.8-sources.jar ...
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.8/scala-reflect-2.12.8-sources.jar
+[info] downloading https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.8/scala-compiler-2.12.8-sources.jar ...
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.8/scala-compiler-2.12.8-sources.jar
+[info] downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-sources.jar ...
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-sources.jar
+[info] downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.8/scala-library-2.12.8-sources.jar ...
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.8/scala-library-2.12.8-sources.jar
+[debug] 	public: downloading https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6-sources.jar.sha1
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.8/scala-library-2.12.8-sources.jar.sha1
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.8/scala-reflect-2.12.8-sources.jar.sha1
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-sources.jar.sha1
+[debug] 	public: downloading https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.8/scala-compiler-2.12.8-sources.jar.sha1
+[debug] sha1 OK for https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6-sources.jar
+[info] 	[SUCCESSFUL ] jline#jline;2.14.6!jline.jar(src) (1190ms)
+[debug] sha1 OK for https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-sources.jar
+[debug] sha1 OK for https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.8/scala-reflect-2.12.8-sources.jar
+[debug] sha1 OK for https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.8/scala-library-2.12.8-sources.jar
+[info] 	[SUCCESSFUL ] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(src) (1230ms)
+[info] 	[SUCCESSFUL ] org.scala-lang#scala-reflect;2.12.8!scala-reflect.jar(src) (1240ms)
+[debug] sha1 OK for https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.8/scala-compiler-2.12.8-sources.jar
+[info] 	[SUCCESSFUL ] org.scala-lang#scala-library;2.12.8!scala-library.jar(src) (1260ms)
+[info] 	[SUCCESSFUL ] org.scala-lang#scala-compiler;2.12.8!scala-compiler.jar(src) (1260ms)
+[debug] :: resolution report :: resolve 40ms :: artifacts dl 1270ms
+[debug] 	report for default#licitacije$sources;0.1 compile produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-compile.xml
+[debug] 	report for default#licitacije$sources;0.1 runtime produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-runtime.xml
+[debug] 	report for default#licitacije$sources;0.1 test produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-test.xml
+[debug] 	report for default#licitacije$sources;0.1 provided produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-provided.xml
+[debug] 	report for default#licitacije$sources;0.1 optional produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-optional.xml
+[debug] 	report for default#licitacije$sources;0.1 compile-internal produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-compile-internal.xml
+[debug] 	report for default#licitacije$sources;0.1 runtime-internal produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-runtime-internal.xml
+[debug] 	report for default#licitacije$sources;0.1 test-internal produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-test-internal.xml
+[debug] 	report for default#licitacije$sources;0.1 plugin produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-plugin.xml
+[debug] 	report for default#licitacije$sources;0.1 pom produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-pom.xml
+[debug] 	report for default#licitacije$sources;0.1 scala-tool produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije$sources-scala-tool.xml
+[debug] 	resolve done (40ms resolve - 1270ms download)
