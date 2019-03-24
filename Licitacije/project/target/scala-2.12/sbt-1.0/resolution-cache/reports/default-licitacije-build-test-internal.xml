@@ -9,8 +9,21 @@
 		extra-sbtVersion="1.0"
 		conf="test-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
+<<<<<<< HEAD
 		date="20190324181713"/>
 	<dependencies>
+=======
+		date="20190324181453"/>
+	<dependencies>
+		<module organisation="org.scala-sbt" name="global-plugins">
+			<revision name="0.0" status="integration" pubdate="20190324181452" resolver="inter-project" artresolver="inter-project" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="0">
+				<metadata-artifact status="failed" details="" size="0" time="0" searched="false"/>
+				<caller organisation="default" name="licitacije-build" conf="test, compile, provided, test-internal, runtime, optional" rev="0.0" rev-constraint-default="0.0" rev-constraint-dynamic="0.0" callerrev="0.1.0-SNAPSHOT" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+>>>>>>> ce19e0b1afb3aa7da821d5ff587615bc5f7f3256
 		<module organisation="org.scala-sbt" name="sbt">
 			<revision name="1.2.8" status="release" pubdate="20181229072743" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/sbt/sbt" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
 				<license name="BSD New" url="https://github.com/sbt/sbt/blob/0.13/LICENSE"/>

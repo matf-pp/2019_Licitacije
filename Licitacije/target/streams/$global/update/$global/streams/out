@@ -288,6 +288,7 @@
 [debug] ignoring unhandled DependencyDescriptorMediator: class sbt.internal.librarymanagement.IvyScalaUtil$OverrideScalaMediator
 [debug] 	resolved ivy file produced in cache
 [debug] :: downloading artifacts ::
+<<<<<<< HEAD
 [debug] 		tried https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.8/scala-compiler-2.12.8.jar
 [debug] 		tried https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.8/scala-library-2.12.8.jar
 [debug] 		tried https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.8/scala-reflect-2.12.8.jar
@@ -321,4 +322,24 @@
 [debug] 	report for default#licitacije_2.12;0.1 pom produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije_2.12-pom.xml
 [debug] 	report for default#licitacije_2.12;0.1 scala-tool produced in C:\Users\Car\Desktop\fakultet\treca godina\PP\projekat\Licitacije\Licitacije\target\scala-2.12\resolution-cache\reports\default-licitacije_2.12-scala-tool.xml
 [debug] 	resolve done (769ms resolve - 5312ms download)
+=======
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.12.8!scala-library.jar
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-reflect;2.12.8!scala-reflect.jar
+[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(bundle)
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.8!scala-compiler.jar
+[debug] 	[NOT REQUIRED] jline#jline;2.14.6!jline.jar
+[debug] :: resolution report :: resolve 58ms :: artifacts dl 2ms
+[debug] 	report for default#licitacije_2.12;0.1 compile produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-compile.xml
+[debug] 	report for default#licitacije_2.12;0.1 runtime produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-runtime.xml
+[debug] 	report for default#licitacije_2.12;0.1 test produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-test.xml
+[debug] 	report for default#licitacije_2.12;0.1 provided produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-provided.xml
+[debug] 	report for default#licitacije_2.12;0.1 optional produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-optional.xml
+[debug] 	report for default#licitacije_2.12;0.1 compile-internal produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-compile-internal.xml
+[debug] 	report for default#licitacije_2.12;0.1 runtime-internal produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-runtime-internal.xml
+[debug] 	report for default#licitacije_2.12;0.1 test-internal produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-test-internal.xml
+[debug] 	report for default#licitacije_2.12;0.1 plugin produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-plugin.xml
+[debug] 	report for default#licitacije_2.12;0.1 pom produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-pom.xml
+[debug] 	report for default#licitacije_2.12;0.1 scala-tool produced in /home/tigarzmaj/Desktop/Ognjen/LICITACIJE/Licitacije/target/scala-2.12/resolution-cache/reports/default-licitacije_2.12-scala-tool.xml
+[debug] 	resolve done (58ms resolve - 2ms download)
+>>>>>>> ce19e0b1afb3aa7da821d5ff587615bc5f7f3256
 [info] Done updating.
