@@ -4,7 +4,7 @@
 		module="licitacije$sources"
 		revision="0.1"
 		status="integration"
-		publication="20190324181113"
+		publication="20190324181500"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
