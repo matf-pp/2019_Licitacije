@@ -10,7 +10,7 @@ class WorkingThread(var id:Int, var client:Socket,var protocolName:String) exten
 
 
 
-  override run(){
+  override def run(){
     work()
   }
 
@@ -18,11 +18,13 @@ class WorkingThread(var id:Int, var client:Socket,var protocolName:String) exten
 
   def getCommunicator(): Communicator ={
     //THIS IS FAKE NEED TO MAKE IT OK, JUST WAIT UNTILL YOU FIND OUT WHAT YOU WANT HERE
-    return new Communicator(getClient())
+    return null
   }
 
-  var protocol:Protocol
 
+
+
+  var protocol:Protocol=null
 
   def work()={
     try{
@@ -36,9 +38,8 @@ class WorkingThread(var id:Int, var client:Socket,var protocolName:String) exten
       }
     }
     catch {
-      _ => println("well well well look what we have here\n a problem in working thread thats what")
+      case _:Throwable => println("well well well look what we have here\n a problem in working thread thats what")
     }
 
   }
-
 }

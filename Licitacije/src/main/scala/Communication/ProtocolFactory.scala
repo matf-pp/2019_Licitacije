@@ -16,7 +16,7 @@ class ProtocolFactory() {
   def createProtocol  (protocolName :String):Protocol={
     var protocol:Protocol=null
     val mirror=ru.runtimeMirror(getClass.getClassLoader)
-    val classC = ru.typeOf[C].typeSymbol.asClass4444444
+    //val classC = ru.typeOf[C].typeSymbol.asClass4444444
 
     protocol
   }
