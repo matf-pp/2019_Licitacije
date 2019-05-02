@@ -1,14 +1,18 @@
 package Package
 
+import java.net.URL
+import java.util.ResourceBundle
+
 import javafx.application.Application
-import javafx.fxml.FXMLLoader
+import javafx.fxml.{FXML, FXMLLoader, Initializable}
 import javafx.scene.{Parent, Scene}
-import javafx.scene.layout.HBox
 import javafx.stage.Stage
+import scalafx.scene.control.{Button, Label, TextArea, TextField}
+import scalafx.scene.layout.VBox
 
 import scala.collection.mutable.ListBuffer
 
-class ImplClient(private var balance:Double) extends Application with RemoteClient {
+class ImplClient(private var balance:Double) extends Application with RemoteClient with Initializable {
 
   private var server: RemoteServer = null
   private var MyItems: ListBuffer[Item] = null
@@ -54,7 +58,20 @@ class ImplClient(private var balance:Double) extends Application with RemoteClie
 
   override def getID(): Double = ID
 
+  /*
+  *
+  *   GUI PART
+  *
+  * */
 
+  @FXML  var vbItemsOfInterest:VBox = _
+  @FXML  var vbMyItems:VBox = _
+  @FXML  var vbAllItems:VBox = _
+  @FXML  var tfNewBid:TextField = _
+  @FXML  var btConfirmBid:Button = _
+  @FXML  var btAddNewItem:Button = _
+  @FXML  var lbBalance:Label = _
+  @FXML  var taText:TextArea = _
 
   override def start(primaryStage: Stage): Unit = {
     val resource=getClass.getResource("ClientGuiLayout.fxml")
@@ -71,6 +88,21 @@ class ImplClient(private var balance:Double) extends Application with RemoteClie
   def openGUI(server: RemoteServer) = {
     this.server = server
     Application.launch()
+  }
+
+  private var currently_selected_item:Item=null
+
+  override def initialize(location: URL, resources: ResourceBundle): Unit = {
+    btConfirmBid.setOnAction(e=>{
+      if(currently_selected_item!=null){
+        val price=Double(tfNewBid.getText())
+        val bidding_try:Boolean=server.bid(currently_selected_item.getID(),price,ID)
+        if(bidding_try)
+          taText.setText("BIDDING WAS SUCCESSFUL")
+        else
+          taText.setText("BIDDING WAS NOT SUCCESSFUL")
+      }
+    })
   }
 }
 
