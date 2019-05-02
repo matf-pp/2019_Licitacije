@@ -13,7 +13,7 @@ trait RemoteServer extends Remote{
     * @return return id of item wen server makes one
     */
   @throws[RemoteException]
-  def createLictitation(ItemPrice:Double,ItemName:String, CLientID: Int):Int
+  def createLictitation(itemPrice:Double,itemName:String, clientID: Int):Int
 
   /**
     *
@@ -24,7 +24,7 @@ trait RemoteServer extends Remote{
     *                 we might wanna add return value so we can know if bid was successful
     */
   @throws[RemoteException]
-  def bid(itemID: Int,price: Double, ClientID: Int)
+  def bid(itemID: Int,price: Double, clientID: Int)
 
   /**
     *  this method will be used only when we are second highest bidder and we dont want to buy item
