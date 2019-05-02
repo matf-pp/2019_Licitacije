@@ -1,5 +1,0 @@
-package Items
-
-class Item {
-
-}
