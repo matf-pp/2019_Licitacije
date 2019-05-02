@@ -4,7 +4,7 @@
 		module="licitecije$sources"
 		revision="0.1"
 		status="integration"
-		publication="20190502113334"
+		publication="20190502121013"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

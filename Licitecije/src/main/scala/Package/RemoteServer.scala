@@ -6,25 +6,25 @@ trait RemoteServer extends Remote{
 
   /**
     *
-    * @param ItemPrice price of item we are putting for licitation
-    * @param ItemName name of item we are putting on licitation
-    * @param CLientID id of client that is making licitation
+    * @param itemPrice price of item we are putting for licitation
+    * @param itemName name of item we are putting on licitation
+    * @param clientID id of client that is making licitation
     * @throws
     * @return return id of item wen server makes one
     */
   @throws[RemoteException]
-  def createLictitation(itemPrice:Double,itemName:String, clientID: Int):Int
+  def createLicitation(itemPrice:Double,itemName:String, clientID: Int):Int
 
   /**
     *
-    * @param itemID ID of item tjat we are bidding on
+    * @param itemID ID of item that we are bidding on
     * @param price new price we are setting
-    * @param ClientID ID of client that is makeing the bid
+    * @param clientID ID of client that is makeing the bid
     *
     *                 we might wanna add return value so we can know if bid was successful
     */
   @throws[RemoteException]
-  def bid(itemID: Int,price: Double, clientID: Int)
+  def bid(itemID: Int,price: Double, clientID: Int) : Boolean
 
   /**
     *  this method will be used only when we are second highest bidder and we dont want to buy item
@@ -40,5 +40,5 @@ trait RemoteServer extends Remote{
     * @throws
     */
   @throws[RemoteException]
-  def subscribe(itemID:Int)
+  def subscribe(clientID: Int, itemID:Int)
 }

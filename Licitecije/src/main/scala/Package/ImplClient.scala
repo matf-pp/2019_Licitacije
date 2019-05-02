@@ -1,8 +1,13 @@
 package Package
 
 class ImplClient(private var ballance:Double) extends RemoteClient {
-
+  /**
+    * List of items that client owns
+    */
   private var MyItemems:List[Item]=null
+  /**
+    * List of items of interest
+    */
   private var ItemsOfInterest:List[Item]=null
   private var ID:Int=ImplClient.getID()
   /**
