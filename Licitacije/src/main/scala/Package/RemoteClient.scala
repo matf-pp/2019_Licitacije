@@ -2,6 +2,8 @@ package Package
 
 import java.rmi.{Remote, RemoteException}
 
+import scala.collection.mutable.ListBuffer
+
 trait RemoteClient extends Remote{
 
   /**
@@ -28,8 +30,8 @@ trait RemoteClient extends Remote{
     * @throws
     */
   @throws[RemoteException]
-  def updatePrices(items:List[Item])
-
+  def updatePrices(items:ListBuffer[Item])
+null
   @throws[RemoteException]
   def getID():Double
 }

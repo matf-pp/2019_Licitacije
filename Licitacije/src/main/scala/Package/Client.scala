@@ -1,7 +1,7 @@
 package Package
 
 import java.rmi.registry.{LocateRegistry, Registry}
-import java.rmi.server.UnicastRemoteObject
+import java.rmi.server.{RemoteServer, UnicastRemoteObject}
 
 object Client {
   val DEFAULTBALLANCE:Double=1000
