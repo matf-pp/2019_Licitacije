@@ -2,9 +2,14 @@ package Package
 
 import java.rmi.RemoteException
 
+import javafx.application.Application
+import javafx.fxml.FXML
+import javafx.stage.Stage
+import scalafx.scene.control.{Button, TextArea}
+
 import scala.collection.mutable.ListBuffer
 
-class ImplServer extends Application with RemoteClient {
+class ImplServer extends Application with RemoteServer {
   /**
     * Map contains items. Key is itemID, value is item
     */
@@ -66,6 +71,7 @@ class ImplServer extends Application with RemoteClient {
     * @throws RemoteException
     */
   override def cancelTransaction(itemID: Int): Unit = {
+
   }
 
   /**
@@ -80,7 +86,14 @@ class ImplServer extends Application with RemoteClient {
       Subscriptions(clientID) += item
   }
 
+  @FXML  var taText:TextArea = _
+  @FXML  var btEND:Button = _
+
   def openGUI(): Unit = {
     Application.launch()
+  }
+
+  override def start(primaryStage: Stage): Unit = {
+
   }
 }
