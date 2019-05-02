@@ -16,7 +16,7 @@ Java.net and Java RMI libraries will be used to support distributed concepts.
 
 ## Authors 
 
-- Dubravka Kutlesic, @dkutlesic , dubravka@gmail.com 
+- Dubravka Kutlesic, @dkutlesic , dubravka97@gmail.com 
 - Ognjen Milinkovic, @ognjenivuk , ognjen7amg@gmail.com
 
 
