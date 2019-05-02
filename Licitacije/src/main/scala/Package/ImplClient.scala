@@ -8,7 +8,7 @@ import javafx.fxml.{FXML, FXMLLoader, Initializable}
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 import scalafx.scene.control.{Button, Label, TextArea, TextField}
-import scalafx.scene.layout.VBox
+import scalafx.scene.layout.{HBox, VBox}
 
 import scala.collection.mutable.ListBuffer
 
@@ -93,6 +93,8 @@ class ImplClient(private var balance:Double) extends Application with RemoteClie
   private var currently_selected_item:Item=null
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
+
+
     btConfirmBid.setOnAction(e=>{
       if(currently_selected_item!=null){
         val price=Double(tfNewBid.getText())
@@ -103,6 +105,34 @@ class ImplClient(private var balance:Double) extends Application with RemoteClie
           taText.setText("BIDDING WAS NOT SUCCESSFUL")
       }
     })
+
+    btAddNewItem.setOnAction(e=>{
+
+      var PopUpStage:Stage=new Stage()
+
+      var PopUpRoot:VBox=new VBox(10)
+      var hbInformations:HBox=new HBox(5)
+      var btConfirm:Button=new Button()
+      PopUpRoot.getChildren.addAll(hbInformations,btConfirm)
+
+      var lbName:Label=new Label("Item Name:")
+      var tfName:TextField=new TextField()
+      var lbStartingPrice:Label=new Label("Starting Price:")
+      var tfStartingPrice:TextField=new TextField()
+      hbInformations.getChildren.addAll(lbName,tfName,lbStartingPrice,tfStartingPrice)
+
+      btConfirm.setOnAction(e =>{
+        val itemName:String=tfName.getText()
+        val itemPrice:Double=Double(tfStartingPrice.getText())
+        server.createLicitation(itemPrice,itemName,ID)
+      })
+
+      var PopUpScene:Scene=new Scene(PopUpRoot)
+      PopUpStage.setScene(PopUpScene)
+      PopUpStage.show()
+
+    })
+
   }
 }
 
