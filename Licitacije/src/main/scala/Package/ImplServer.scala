@@ -4,7 +4,7 @@ import java.rmi.RemoteException
 
 import scala.collection.mutable.ListBuffer
 
-class ImplServer extends RemoteServer {
+class ImplServer extends Application with RemoteClient {
   /**
     * Map contains items. Key is itemID, value is item
     */
@@ -80,5 +80,7 @@ class ImplServer extends RemoteServer {
       Subscriptions(clientID) += item
   }
 
-
+  def openGUI(): Unit = {
+    Application.launch()
+  }
 }
