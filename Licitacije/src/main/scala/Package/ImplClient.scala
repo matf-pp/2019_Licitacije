@@ -55,7 +55,18 @@ class ImplClient extends Application with RemoteClient with Initializable {
     */
   override def updatePrices(items: ListBuffer[Item]): Unit = {
 
-    MyItems = items
+    ItemsOfInterest = items
+
+    /*updating GUI*/
+
+    vbItemsOfInterest.getChildren.removeAll()
+    for(item<-ItemsOfInterest){
+      val ItemButton:Button=new Button(item.getName())
+      ItemButton.setOnAction(_=>{
+        taText.setText(Item.toString)
+        CurrentlySelectedItem=item
+      })
+    }
   }
 
   override def getID(): Double = ID
@@ -92,15 +103,15 @@ class ImplClient extends Application with RemoteClient with Initializable {
     Application.launch()
   }
 
-  private var currently_selected_item:Item=null
+  private var CurrentlySelectedItem:Item=null
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
 
 
     btConfirmBid.setOnAction(e=>{
-      if(currently_selected_item!=null){
+      if(CurrentlySelectedItem!=null){
         val price=tfNewBid.getText().toDouble
-        val bidding_try:Boolean=server.bid(currently_selected_item.getID(),price,ID)
+        val bidding_try:Boolean=server.bid(CurrentlySelectedItem.getID(),price,ID)
         if(bidding_try)
           taText.setText("BIDDING WAS SUCCESSFUL")
         else

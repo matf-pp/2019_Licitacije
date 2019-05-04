@@ -5,8 +5,9 @@ package Package
   *
   * @param Price price of the item we are making
   * @param Name name of the item we are making
+  * @param NumberOfMinutes number of minutes until the end of the licitation
   */
-class Item(private var Price : Double = 0,private var Name:String) extends Thread{
+class Item(private var Price : Double = 0,private var Name:String, private var NumberOfMinutes:Int) extends Thread{
   /**
     * unique ID of item
     */
@@ -33,6 +34,12 @@ class Item(private var Price : Double = 0,private var Name:String) extends Threa
     * @return Unit
     */
   def getID() : Int = ID
+
+  /**
+    * Name getter
+    * @return
+    */
+  def getName():String=Name
 
   /**
     * Top1Bidder getter
@@ -80,6 +87,18 @@ class Item(private var Price : Double = 0,private var Name:String) extends Threa
     setPrice(price)
     setTop2Bidder(Top1Bidder)
     setTop1Bidder(clientID)
+  }
+
+
+  //when Item is created his thread will start and we will wait NumberOfMinutes minutes
+  //before we dicide what to do with it
+  override def run(): Unit = {
+    Thread.sleep(60*1000*NumberOfMinutes)
+    //DEAL WITH END OF LICITATION
+  }
+
+  override def toString: String = {
+    "Name: "+Name+"\nPrice: "+Price.toString+"\nLicitation end in: "+NumberOfMinutes.toString+" minutes"
   }
 
 }

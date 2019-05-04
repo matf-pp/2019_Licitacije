@@ -24,6 +24,8 @@ class ImplServer extends Application with RemoteServer with Initializable {
     */
   private var Subscriptions : Map [Int, ListBuffer[Item]] = Map()
 
+  def getSubscriptions():Map [Int, ListBuffer[Item]]=Subscriptions
+
   /**
     *
     * @param itemPrice price of item we are putting for licitation
