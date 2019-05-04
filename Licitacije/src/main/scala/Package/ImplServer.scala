@@ -1,15 +1,18 @@
 package Package
 
+import java.net.URL
 import java.rmi.RemoteException
+import java.util.ResourceBundle
 
 import javafx.application.Application
-import javafx.fxml.FXML
+import javafx.fxml.{FXML, FXMLLoader, Initializable}
+import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
-import scalafx.scene.control.{Button, TextArea}
+import javafx.scene.control.{Button, TextArea}
 
 import scala.collection.mutable.ListBuffer
 
-class ImplServer extends Application with RemoteServer {
+class ImplServer extends Application with RemoteServer with Initializable {
   /**
     * Map contains items. Key is itemID, value is item
     */
@@ -94,6 +97,21 @@ class ImplServer extends Application with RemoteServer {
   }
 
   override def start(primaryStage: Stage): Unit = {
+    val resource=getClass.getResource("ServerGuiLayout.fxml")
+    if(resource==null){
+      println("NEUSPELO UCITAVANJE FXML")
+    }
 
+    val root: Parent = FXMLLoader.load(resource)
+
+    primaryStage.setScene(new Scene(root))
+    primaryStage.setTitle("LICITACIJE-SERVER")
+    primaryStage.show()
+  }
+
+  override def initialize(location: URL, resources: ResourceBundle): Unit = {
+
+    taText.setEditable(false)
+    taText.appendText("SERVER IS READY!!\n")
   }
 }

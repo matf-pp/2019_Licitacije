@@ -7,12 +7,14 @@ import javafx.application.Application
 import javafx.fxml.{FXML, FXMLLoader, Initializable}
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
-import scalafx.scene.control.{Button, Label, TextArea, TextField}
-import scalafx.scene.layout.{HBox, VBox}
+import javafx.scene.control.{Button, Label, TextArea, TextField}
+import javafx.scene.layout.{HBox, VBox}
 
 import scala.collection.mutable.ListBuffer
 
-class ImplClient(private var balance:Double) extends Application with RemoteClient with Initializable {
+class ImplClient extends Application with RemoteClient with Initializable {
+
+  var balance=ImplClient.DEFAULTBALLANCE
 
   private var server: RemoteServer = null
   private var MyItems: ListBuffer[Item] = null
@@ -97,7 +99,7 @@ class ImplClient(private var balance:Double) extends Application with RemoteClie
 
     btConfirmBid.setOnAction(e=>{
       if(currently_selected_item!=null){
-        val price=Double(tfNewBid.getText())
+        val price=tfNewBid.getText().toDouble
         val bidding_try:Boolean=server.bid(currently_selected_item.getID(),price,ID)
         if(bidding_try)
           taText.setText("BIDDING WAS SUCCESSFUL")
@@ -123,7 +125,7 @@ class ImplClient(private var balance:Double) extends Application with RemoteClie
 
       btConfirm.setOnAction(e =>{
         val itemName:String=tfName.getText()
-        val itemPrice:Double=Double(tfStartingPrice.getText())
+        val itemPrice:Double=tfStartingPrice.getText().toDouble
         server.createLicitation(itemPrice,itemName,ID)
       })
 
@@ -137,6 +139,7 @@ class ImplClient(private var balance:Double) extends Application with RemoteClie
 }
 
 object ImplClient{
+  private val DEFAULTBALLANCE:Double=1000
   private var ID:Int=0
   def getID():Int={
     ID.synchronized{
