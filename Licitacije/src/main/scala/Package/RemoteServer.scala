@@ -8,12 +8,13 @@ trait RemoteServer extends Remote{
     *
     * @param itemPrice price of item we are putting for licitation
     * @param itemName name of item we are putting on licitation
+    * @param time number of minutes until the end of licitation
     * @param clientID id of client that is making licitation
     * @throws
     * @return return id of item wen server makes one
     */
   @throws[RemoteException]
-  def createLicitation(itemPrice:Double,itemName:String, clientID: Int):Int
+  def createLicitation(itemPrice:Double, itemName:String, time:Int, clientID: Int):Int
 
   /**
     *

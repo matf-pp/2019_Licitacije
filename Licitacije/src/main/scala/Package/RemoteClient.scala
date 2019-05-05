@@ -33,5 +33,8 @@ trait RemoteClient extends Remote{
   def updatePrices(items:ListBuffer[Item])
 
   @throws[RemoteException]
+  def updateAll(items:ListBuffer[Item])
+
+  @throws[RemoteException]
   def getID():Double
 }

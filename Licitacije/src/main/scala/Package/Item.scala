@@ -6,8 +6,9 @@ package Package
   * @param Price price of the item we are making
   * @param Name name of the item we are making
   * @param NumberOfMinutes number of minutes until the end of the licitation
+  * @param OwnerID ID of the owner(creator of the licitation)
   */
-class Item(private var Price : Double = 0,private var Name:String, private var NumberOfMinutes:Int) extends Thread{
+class Item(private var Price : Double = 0,private var Name:String, private var NumberOfMinutes:Int,private var OwnerID: Int) extends Thread{
   /**
     * unique ID of item
     */

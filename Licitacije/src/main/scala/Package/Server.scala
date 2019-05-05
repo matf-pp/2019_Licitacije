@@ -26,7 +26,9 @@ object Server {
           Thread.sleep(PERIOD)
         }
     /*
-      WE SHOULD IMPLEMENT getClients(), getItems() and updateAll(items)
+      WE SHOULD IMPLEMENT
+      getClients() probably can be done with just reading all the clients from registry
+      getItems()
 
 
       for(clientID<-implServer.getClients()){

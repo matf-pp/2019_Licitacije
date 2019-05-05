@@ -31,11 +31,12 @@ class ImplServer extends Application with RemoteServer with Initializable {
     * @param itemPrice price of item we are putting for licitation
     * @param itemName  name of item we are putting on licitation
     * @param clientID  id of client that is making licitation
+    * @param time number of minutes until the end of licitation
     * @throws RemoteException
     * @return return id of item wen server makes one
     */
-  override def createLicitation(itemPrice: Double, itemName: String, clientID: Int): Int = {
-      val item : Item = new Item(itemPrice, itemName)
+  override def createLicitation(itemPrice: Double, itemName: String, time: Int, clientID: Int): Int = {
+      val item : Item = new Item(itemPrice, itemName,time,clientID)
       Items + (item.getID() -> item)
       // improve this
       item.getID()

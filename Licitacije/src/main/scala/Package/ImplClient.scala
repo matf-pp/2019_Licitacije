@@ -14,12 +14,12 @@ import scala.collection.mutable.ListBuffer
 
 class ImplClient extends Application with RemoteClient with Initializable {
 
-  var balance=ImplClient.DEFAULTBALLANCE
-
+  private var balance=ImplClient.DEFAULTBALLANCE
   private var server: RemoteServer = null
   private var MyItems: ListBuffer[Item] = null
   private var ItemsOfInterest: ListBuffer[Item] = null
-  private var ID: Int = ImplClient.getID()
+  private val ID: Int = ImplClient.getID()
+  private var AllItems:ListBuffer[Item] = null
 
   /**
     *
@@ -32,6 +32,9 @@ class ImplClient extends Application with RemoteClient with Initializable {
       if (item.getPrice() > balance)
         false
       balance -= item.getPrice()
+
+      //making message appear in text area about our purchase
+      taText.setText("Item Bought!\n"+item.toString)
       true
     }
   }
@@ -59,6 +62,11 @@ class ImplClient extends Application with RemoteClient with Initializable {
 
     /*updating GUI*/
 
+    /**
+      * when updating GUI we delete all the buttons we had so far and create new ones
+      * every new button have event handler connected with item it represent
+      * pressing it will change text in text area and will change CurrentlySelectedItem
+      */
     vbItemsOfInterest.getChildren.removeAll()
     for(item<-ItemsOfInterest){
       val ItemButton:Button=new Button(item.getName())
@@ -69,20 +77,36 @@ class ImplClient extends Application with RemoteClient with Initializable {
     }
   }
 
+  override def updateAll(items: ListBuffer[Item]): Unit = {
+    AllItems = items
+
+    /*updating GUI*/
+    //for explanation look at updatePrices function
+    vbAllItems.getChildren.removeAll()
+    for(item<-AllItems){
+      val ItemButton:Button=new Button(item.getName())
+      ItemButton.setOnAction(_=>{
+        taText.setText(Item.toString)
+        CurrentlySelectedItem=item
+      })
+    }
+
+  }
+
   override def getID(): Double = ID
 
   /*
-  *
-  *   GUI PART
-  *
-  * */
+   *   GUI PART
+  */
 
   @FXML  var vbItemsOfInterest:VBox = _
   @FXML  var vbMyItems:VBox = _
   @FXML  var vbAllItems:VBox = _
+  @FXML  var vbMyBids:VBox = _
   @FXML  var tfNewBid:TextField = _
   @FXML  var btConfirmBid:Button = _
   @FXML  var btAddNewItem:Button = _
+  @FXML  var btSubscribe:Button = _
   @FXML  var lbBalance:Label = _
   @FXML  var taText:TextArea = _
 
@@ -107,7 +131,10 @@ class ImplClient extends Application with RemoteClient with Initializable {
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
 
-
+    /**
+      * this button should take value(Double) from tfNewBid and send Server a message
+      * with itemId we are bidding on and value we read
+      */
     btConfirmBid.setOnAction(e=>{
       if(CurrentlySelectedItem!=null){
         val price=tfNewBid.getText().toDouble
@@ -119,6 +146,10 @@ class ImplClient extends Application with RemoteClient with Initializable {
       }
     })
 
+    /**
+      * this button should make popup window with form for creating new item
+      * after for is filled in message is sent to Server to create new Licitation
+      */
     btAddNewItem.setOnAction(e=>{
 
       var PopUpStage:Stage=new Stage()
@@ -132,18 +163,33 @@ class ImplClient extends Application with RemoteClient with Initializable {
       var tfName:TextField=new TextField()
       var lbStartingPrice:Label=new Label("Starting Price:")
       var tfStartingPrice:TextField=new TextField()
-      hbInformations.getChildren.addAll(lbName,tfName,lbStartingPrice,tfStartingPrice)
+      //should implement date time input
+      var lbEndOfLicitation:Label=new Label("Minutes Untill End: ")
+      var tfEndOfLicitation:TextField=new TextField()
+      hbInformations.getChildren.addAll(lbName,tfName,lbStartingPrice,tfStartingPrice,lbEndOfLicitation,tfEndOfLicitation)
 
       btConfirm.setOnAction(e =>{
         val itemName:String=tfName.getText()
         val itemPrice:Double=tfStartingPrice.getText().toDouble
-        server.createLicitation(itemPrice,itemName,ID)
+        val numberOfMinutes:Int=tfEndOfLicitation.getText().toInt
+        server.createLicitation(itemPrice,itemName,numberOfMinutes,ID)
       })
 
       var PopUpScene:Scene=new Scene(PopUpRoot)
       PopUpStage.setScene(PopUpScene)
       PopUpStage.show()
 
+    })
+
+    /**
+      * this button should send message to server with our id and id of currently selected item
+      * and server should subscribe us to this item
+      */
+    btSubscribe.setOnAction(e=>{
+      if(CurrentlySelectedItem!=null){
+        server.subscribe(ID,CurrentlySelectedItem.getID())
+        ItemsOfInterest+=CurrentlySelectedItem
+      }
     })
 
   }
