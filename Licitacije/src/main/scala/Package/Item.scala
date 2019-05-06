@@ -1,5 +1,7 @@
 package Package
 
+import java.util.concurrent.locks
+
 /**
   * @constructor
   *
@@ -23,6 +25,7 @@ class Item(private var Price : Double = 0,private var Name:String, private var N
     * clientID of top 2 bidder
     */
   private var Top2Bidder : Int = -1
+
 
   /**
     * Price getter
@@ -105,10 +108,13 @@ class Item(private var Price : Double = 0,private var Name:String, private var N
 }
 object Item{
   private var ID:Int=0
+  private val idLock:locks.Lock=new locks.ReentrantLock()
+
   def getID():Int={
-    ID.synchronized{
-      ID+=1
-      ID
-    }
+    idLock.lock()
+    ID+=1
+    idLock.unlock()
+    ID
+
   }
 }

@@ -2,6 +2,7 @@ package Package
 
 import java.net.URL
 import java.util.ResourceBundle
+import java.util.concurrent.locks
 
 import javafx.application.Application
 import javafx.fxml.{FXML, FXMLLoader, Initializable}
@@ -20,6 +21,7 @@ class ImplClient extends Application with RemoteClient with Initializable {
   private var ItemsOfInterest: ListBuffer[Item] = null
   private val ID: Int = ImplClient.getID()
   private var AllItems:ListBuffer[Item] = null
+  private val balanceLock:locks.Lock=new locks.ReentrantLock()
 
   /**
     *
@@ -28,15 +30,25 @@ class ImplClient extends Application with RemoteClient with Initializable {
     * @return tell us if client successfully bought the item
     */
   override def buy(item: Item): Boolean = {
-    balance.synchronized {
-      if (item.getPrice() > balance)
-        false
+    try{
+      balanceLock.lock()
+      if (item.getPrice() > balance){
+        balanceLock.unlock()
+        return false
+      }
       balance -= item.getPrice()
 
       //making message appear in text area about our purchase
       taText.setText("Item Bought!\n"+item.toString)
-      true
+
     }
+    catch {
+      case e:Throwable => println("problem in buy function with balanceLock")
+    }
+    finally{
+      balanceLock.unlock()
+    }
+    return true
   }
 
   /**
@@ -45,8 +57,15 @@ class ImplClient extends Application with RemoteClient with Initializable {
     * @throws
     */
   override def sell(item: Item): Unit = {
-    balance.synchronized {
-      balance += item.getPrice()
+    try{
+      balanceLock.lock()
+      balance+=item.getPrice()
+    }
+    catch {
+      case e:Throwable => println("problem in sell function with balanceLock")
+    }
+    finally{
+      balanceLock.unlock()
     }
   }
 
@@ -198,11 +217,19 @@ class ImplClient extends Application with RemoteClient with Initializable {
 object ImplClient{
   private val DEFAULTBALLANCE:Double=1000
   private var ID:Int=0
+  private val idLock:locks.Lock=new locks.ReentrantLock()
   def getID():Int={
-    ID.synchronized{
+    try{
+      idLock.lock()
       ID+=1
-      ID
     }
+    catch {
+      case e:Throwable=>println("problem with idLock!")
+    }
+    finally {
+      idLock.unlock()
+    }
+    ID
   }
 }
 
