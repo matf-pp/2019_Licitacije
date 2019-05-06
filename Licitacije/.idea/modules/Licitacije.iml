@@ -14,5 +14,29 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.12.8:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.openjfx:javafx-base:11:linux:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.openjfx:javafx-controls:11:linux:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.openjfx:javafx-fxml:11:linux:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.openjfx:javafx-graphics:11:linux:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.openjfx:javafx-media:11:linux:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.openjfx:javafx-swing:11:linux:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.openjfx:javafx-web:11:linux:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.12.8:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalafx:scalafx_2.12:11-R16:jar" level="project" />
+    <orderEntry type="module-library">
+      <library name="sbt: unmanaged-sources-and-docs">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openjfx/javafx-base/srcs/javafx-base-11-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openjfx/javafx-controls/srcs/javafx-controls-11-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openjfx/javafx-fxml/srcs/javafx-fxml-11-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openjfx/javafx-graphics/srcs/javafx-graphics-11-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openjfx/javafx-media/srcs/javafx-media-11-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openjfx/javafx-swing/srcs/javafx-swing-11-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openjfx/javafx-web/srcs/javafx-web-11-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

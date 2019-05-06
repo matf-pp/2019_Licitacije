@@ -36,10 +36,10 @@ class ImplServer extends Application with RemoteServer with Initializable {
     * @return return id of item wen server makes one
     */
   override def createLicitation(itemPrice: Double, itemName: String, time: Int, clientID: Int): Int = {
-      val item : Item = new Item(itemPrice, itemName,time,clientID)
-      Items + (item.getID() -> item)
-      // improve this
-      item.getID()
+    val item : Item = new Item(itemPrice, itemName,time,clientID)
+    Items + (item.getID() -> item)
+    // improve this
+    item.getID()
   }
 
   /**
@@ -51,22 +51,22 @@ class ImplServer extends Application with RemoteServer with Initializable {
     *                 we might wanna add return value so we can know if bid was successful
     */
   override def bid(itemID: Int, price: Double, clientID: Int): Boolean = {
-      try {
-        val item = Items(itemID)
-        item.synchronized {
-          val highestBidPrice = item.getPrice()
-          if (highestBidPrice < price) {
-            item.updatePrice(price, clientID)
-            return true
-          }
-          false
+    try {
+      val item = Items(itemID)
+      item.synchronized {
+        val highestBidPrice = item.getPrice()
+        if (highestBidPrice < price) {
+          item.updatePrice(price, clientID)
+          return true
         }
-      } catch {
-        case ex: Exception => {
-          println("Exception")
-          false
-        }
+        false
       }
+    } catch {
+      case ex: Exception => {
+        println("Exception")
+        false
+      }
+    }
 
   }
 
@@ -86,10 +86,10 @@ class ImplServer extends Application with RemoteServer with Initializable {
     * @throws RemoteException
     */
   override def subscribe(clientID: Int, itemID: Int): Unit = {
-      val item = Items(itemID)
-      //maybe this won't work if clientID does not exist
-      //CHECK CHECK CHECK
-      Subscriptions(clientID) += item
+    val item = Items(itemID)
+    //maybe this won't work if clientID does not exist
+    //CHECK CHECK CHECK
+    Subscriptions(clientID) += item
   }
 
   @FXML  var taText:TextArea = _

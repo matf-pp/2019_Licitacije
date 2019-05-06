@@ -40,7 +40,7 @@ class Item(private var Price : Double = 0,private var Name:String, private var N
     * Name getter
     * @return
     */
-  def getName():String=Name
+  def GetName():String=Name
 
   /**
     * Top1Bidder getter
