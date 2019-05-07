@@ -17,7 +17,7 @@ class ImplServer extends Application with RemoteServer with Initializable {
     * Map contains items. Key is itemID, value is item
     */
   private var Items : Map[Int, Item] = Map()
-
+  private var Clients: ListBuffer[Int] = ListBuffer()
   /**
     * Map contains subscriptions. Key is clientID
     *       value is list of items of interest
@@ -25,6 +25,16 @@ class ImplServer extends Application with RemoteServer with Initializable {
   private var Subscriptions : Map [Int, ListBuffer[Item]] = Map()
 
   def getSubscriptions():Map [Int, ListBuffer[Item]]=Subscriptions
+
+  def getClients(): ListBuffer[Int]=Clients
+
+  def getItems(): ListBuffer[Item]={
+    var itemList:ListBuffer[Item]=ListBuffer()
+    for(item<-Items.values){
+      itemList+=item
+    }
+    itemList
+  }
 
   /**
     *
@@ -90,6 +100,10 @@ class ImplServer extends Application with RemoteServer with Initializable {
     //maybe this won't work if clientID does not exist
     //CHECK CHECK CHECK
     Subscriptions(clientID) += item
+  }
+
+  override def addClient(clientID: Int): Unit = {
+    Clients+=clientID
   }
 
   @FXML  var taText:TextArea = _

@@ -42,4 +42,12 @@ trait RemoteServer extends Remote{
     */
   @throws[RemoteException]
   def subscribe(clientID: Int, itemID:Int)
+
+  /**
+    *
+    * @param clientID
+    * @throws
+    */
+  @throws[RemoteException]
+  def addClient(clientID:Int)
 }
