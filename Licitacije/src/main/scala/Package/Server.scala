@@ -10,33 +10,31 @@ object Server {
   private val PERIOD=20000 //period for updates on subscribed items
   private val NUMBEROFPERIODS=10// number of periods before we update all of the items
   def main(args : Array[String]) : Unit = {
-    var implServer : ImplServer = new ImplServer()
-    var serverStub : RemoteServer = UnicastRemoteObject.exportObject(implServer,0).asInstanceOf[RemoteServer]
+    if(System.getSecurityManager==null)
+      System.setSecurityManager(new SecurityManager())
+    val implServer : ImplServer = new ImplServer()
+    val serverStub : RemoteServer = UnicastRemoteObject.exportObject(implServer,0).asInstanceOf[RemoteServer]
 
-    var registry : Registry = LocateRegistry.createRegistry(DEFAULTPORT)
+    val registry : Registry = LocateRegistry.getRegistry()
     registry.bind("Server", serverStub)
     implServer.openGUI()
     var counter=0
     while(true){
-      for(i<-1 to DEFAULTPORT)
-        for((clientID,items) <- implServer.getSubscriptions()){
-          var clientStub:RemoteClient=registry.lookup(clientID.toString).asInstanceOf[RemoteClient]
-          if(clientStub!=null)
+      for(_ <-1 to NUMBEROFPERIODS) {
+        for ((clientID, items) <- implServer.getSubscriptions()) {
+          val clientStub: RemoteClient = registry.lookup(clientID.toString).asInstanceOf[RemoteClient]
+          if (clientStub != null)
             clientStub.updatePrices(items)
-          Thread.sleep(PERIOD)
         }
-    /*
-      WE SHOULD IMPLEMENT
-      getClients() probably can be done with just reading all the clients from registry
-      getItems()
-
+        Thread.sleep(PERIOD)
+      }
 
       for(clientID<-implServer.getClients()){
         var clientStub:RemoteClient=registry.lookup(clientID.toString).asInstanceOf[RemoteClient]
         if(clientStub!=null)
-          clientStub.updateAll(implServer.getItems())
+        clientStub.updateAll(implServer.getItems())
       }
-    */
+
     }
 
   }

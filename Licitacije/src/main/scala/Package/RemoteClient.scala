@@ -36,5 +36,5 @@ trait RemoteClient extends Remote{
   def updateAll(items:ListBuffer[Item])
 
   @throws[RemoteException]
-  def getID():Double
+  def getID():Int
 }

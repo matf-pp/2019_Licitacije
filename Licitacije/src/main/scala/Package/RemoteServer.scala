@@ -46,8 +46,12 @@ trait RemoteServer extends Remote{
   /**
     *
     * @param clientID
+    * @param remoteClient
     * @throws
     */
   @throws[RemoteException]
-  def addClient(clientID:Int)
+  def addClient(clientID:Int,remoteClient: RemoteClient)
+
+  @throws[RemoteException]
+  def processEndOfLicitation(itemID:Int)
 }

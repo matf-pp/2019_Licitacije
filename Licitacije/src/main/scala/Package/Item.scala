@@ -1,5 +1,6 @@
 package Package
 
+import java.rmi.registry.{LocateRegistry, Registry}
 import java.util.concurrent.locks
 
 /**
@@ -9,12 +10,14 @@ import java.util.concurrent.locks
   * @param Name name of the item we are making
   * @param NumberOfMinutes number of minutes until the end of the licitation
   * @param OwnerID ID of the owner(creator of the licitation)
+  *
   */
-class Item(private var Price : Double = 0,private var Name:String, private var NumberOfMinutes:Int,private var OwnerID: Int) extends Thread{
+class Item(private var Price : Double = 0,private var Name:String, private var NumberOfMinutes:Int,private var OwnerID: Int) extends Thread with Serializable {
   /**
     * unique ID of item
     */
   private var ID : Int = Item.getID()
+  private val StartingPrice:Double=Price
 
   /**
     * clientID of top 1 bidder
@@ -26,6 +29,7 @@ class Item(private var Price : Double = 0,private var Name:String, private var N
     */
   private var Top2Bidder : Int = -1
 
+  def getStartingPrice():Double=StartingPrice
 
   /**
     * Price getter
@@ -93,12 +97,27 @@ class Item(private var Price : Double = 0,private var Name:String, private var N
     setTop1Bidder(clientID)
   }
 
+  def processBid(price:Double,clientID:Int):Boolean={
+    this.synchronized{
+      if(Price>price)
+        false
+      setPrice(price)
+      setTop2Bidder(Top1Bidder)
+      setTop1Bidder(clientID)
+    }
+    true
+
+  }
+
+
 
   //when Item is created his thread will start and we will wait NumberOfMinutes minutes
   //before we dicide what to do with it
   override def run(): Unit = {
     Thread.sleep(60*1000*NumberOfMinutes)
-    //DEAL WITH END OF LICITATION
+    val registry:Registry=LocateRegistry.getRegistry()
+    val server:RemoteServer=registry.lookup("server").asInstanceOf[RemoteServer]
+    server.processEndOfLicitation(this.getID())
   }
 
   override def toString: String = {

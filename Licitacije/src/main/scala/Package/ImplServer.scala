@@ -4,7 +4,7 @@ import java.net.URL
 import java.rmi.RemoteException
 import java.util.ResourceBundle
 
-import javafx.application.Application
+import javafx.application.{Application, Platform}
 import javafx.fxml.{FXML, FXMLLoader, Initializable}
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
@@ -13,11 +13,14 @@ import javafx.scene.control.{Button, TextArea}
 import scala.collection.mutable.ListBuffer
 
 class ImplServer extends Application with RemoteServer with Initializable {
+
+
+  private val WAITINGTIME:Int=10000
   /**
     * Map contains items. Key is itemID, value is item
     */
   private var Items : Map[Int, Item] = Map()
-  private var Clients: ListBuffer[Int] = ListBuffer()
+  private var Clients:Map[Int, RemoteClient] = Map()
   /**
     * Map contains subscriptions. Key is clientID
     *       value is list of items of interest
@@ -26,7 +29,7 @@ class ImplServer extends Application with RemoteServer with Initializable {
 
   def getSubscriptions():Map [Int, ListBuffer[Item]]=Subscriptions
 
-  def getClients(): ListBuffer[Int]=Clients
+  def getClients(): Map[Int,RemoteClient]=Clients
 
   def getItems(): ListBuffer[Item]={
     var itemList:ListBuffer[Item]=ListBuffer()
@@ -48,8 +51,42 @@ class ImplServer extends Application with RemoteServer with Initializable {
   override def createLicitation(itemPrice: Double, itemName: String, time: Int, clientID: Int): Int = {
     val item : Item = new Item(itemPrice, itemName,time,clientID)
     Items + (item.getID() -> item)
+    taText.appendText("New item added\n"+item.toString)
     // improve this
+    item.start()
     item.getID()
+  }
+
+
+  /*
+  * THIS WILL HAVE PROBLEM FOR SUBSCRIPTIONS
+  * EASY FIX IS GOING THROUGH ALL THE SUBSCRIPTIONS AND REMOVING ITEM
+  * */
+  override def processEndOfLicitation(itemID: Int): Unit = {
+    val item=Items(itemID)
+    item.synchronized{
+      val winner=Clients(item.getTop1Bidder())
+      val second=Clients(item.getTop2Bidder())
+      if(winner.buy(item)){
+        Items=Items-itemID
+      }
+      else{
+        Thread.sleep(WAITINGTIME)
+        if(winner.buy(item)){
+          Items=Items-itemID
+        }
+        else{
+          /*offering item t0 second client should be implemented
+          if(second.offerItem(item))
+            Items=Items-itemID
+          else
+            NAPRAVITI KOPIJU ITEMA I DODATI U ITEMS
+
+          */
+        }
+      }
+
+    }
   }
 
   /**
@@ -63,14 +100,12 @@ class ImplServer extends Application with RemoteServer with Initializable {
   override def bid(itemID: Int, price: Double, clientID: Int): Boolean = {
     try {
       val item = Items(itemID)
-      item.synchronized {
-        val highestBidPrice = item.getPrice()
-        if (highestBidPrice < price) {
-          item.updatePrice(price, clientID)
-          return true
-        }
-        false
-      }
+      val resultOfBid=item.processBid(price,clientID)
+      if(resultOfBid)
+        taText.appendText("Client: "+clientID+" successfully bid for item: "+itemID+" for "+price+"rsd")
+      else
+        taText.appendText("Client: "+clientID+" unsuccessfully bid for item: "+itemID)
+      return resultOfBid
     } catch {
       case ex: Exception => {
         println("Exception")
@@ -102,8 +137,9 @@ class ImplServer extends Application with RemoteServer with Initializable {
     Subscriptions(clientID) += item
   }
 
-  override def addClient(clientID: Int): Unit = {
-    Clients+=clientID
+  override def addClient(clientID: Int,remoteClient: RemoteClient): Unit = {
+    Clients + (clientID->remoteClient)
+    taText.appendText("New client "+clientID+" just joined\n")
   }
 
   @FXML  var taText:TextArea = _
@@ -130,5 +166,6 @@ class ImplServer extends Application with RemoteServer with Initializable {
 
     taText.setEditable(false)
     taText.appendText("SERVER IS READY!!\n")
+    btEND.setOnAction(_=>Platform.exit())
   }
 }

@@ -16,7 +16,7 @@ object Client {
     registry.bind(implClient.getID().toString,clientStub)
 
     var server:RemoteServer=registry.lookup("Server").asInstanceOf[RemoteServer]
-    server.addClient(implClient.getID())
+    server.addClient(implClient.getID(),clientStub)
     implClient.openGUI(server)
   }
 }

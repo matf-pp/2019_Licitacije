@@ -112,7 +112,7 @@ class ImplClient extends Application with RemoteClient with Initializable {
 
   }
 
-  override def getID(): Double = ID
+  override def getID(): Int = ID
 
   /*
    *   GUI PART
