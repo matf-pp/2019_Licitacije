@@ -1,6 +1,7 @@
 package Package
 
 import java.net.URL
+import java.rmi.registry.LocateRegistry
 import java.util.ResourceBundle
 import java.util.concurrent.locks
 
@@ -16,11 +17,11 @@ import scala.collection.mutable.ListBuffer
 class ImplClient extends Application with RemoteClient with Initializable {
 
   private var balance=ImplClient.DEFAULTBALLANCE
-  private var server: RemoteServer = null
-  private var MyItems: ListBuffer[Item] = null
-  private var ItemsOfInterest: ListBuffer[Item] = null
+  private val server: RemoteServer = LocateRegistry.getRegistry(Server.DEFAULTHOST,Server.DEFAULTPORT).lookup("Server").asInstanceOf[RemoteServer]
+  private var MyItems: ListBuffer[Item] = ListBuffer()
+  private var ItemsOfInterest: ListBuffer[Item] = ListBuffer()
   private val ID: Int = ImplClient.getID()
-  private var AllItems:ListBuffer[Item] = null
+  private var AllItems:ListBuffer[Item] = ListBuffer()
   private val balanceLock:locks.Lock=new locks.ReentrantLock()
 
   /**
@@ -37,6 +38,7 @@ class ImplClient extends Application with RemoteClient with Initializable {
         return false
       }
       balance -= item.getPrice()
+      lbBalance.setText(balance.toString)
 
       //making message appear in text area about our purchase
       taText.setText("Item Bought!\n"+item.toString)
@@ -60,6 +62,7 @@ class ImplClient extends Application with RemoteClient with Initializable {
     try{
       balanceLock.lock()
       balance+=item.getPrice()
+      lbBalance.setText(balance.toString)
     }
     catch {
       case e:Throwable => println("problem in sell function with balanceLock")
@@ -139,16 +142,18 @@ class ImplClient extends Application with RemoteClient with Initializable {
 
     primaryStage.setScene(new Scene(root))
     primaryStage.setTitle("LICITACIJE")
+    primaryStage.show()
   }
 
   def openGUI(server: RemoteServer) = {
-    this.server = server
     Application.launch()
   }
 
   private var CurrentlySelectedItem:Item=null
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
+
+    lbBalance.setText(balance.toString)
 
     /**
       * this button should take value(Double) from tfNewBid and send Server a message
@@ -175,7 +180,7 @@ class ImplClient extends Application with RemoteClient with Initializable {
 
       var PopUpRoot:VBox=new VBox(10)
       var hbInformations:HBox=new HBox(5)
-      var btConfirm:Button=new Button()
+      var btConfirm:Button=new Button("Confirm")
       PopUpRoot.getChildren.addAll(hbInformations,btConfirm)
 
       var lbName:Label=new Label("Item Name:")
@@ -186,6 +191,8 @@ class ImplClient extends Application with RemoteClient with Initializable {
       var lbEndOfLicitation:Label=new Label("Minutes Untill End: ")
       var tfEndOfLicitation:TextField=new TextField()
       hbInformations.getChildren.addAll(lbName,tfName,lbStartingPrice,tfStartingPrice,lbEndOfLicitation,tfEndOfLicitation)
+
+      println(server)
 
       btConfirm.setOnAction(e =>{
         val itemName:String=tfName.getText()

@@ -156,7 +156,6 @@ class ImplServer extends Application with RemoteServer with Initializable {
     }
 
     val root: Parent = FXMLLoader.load(resource)
-
     primaryStage.setScene(new Scene(root))
     primaryStage.setTitle("LICITACIJE-SERVER")
     primaryStage.show()

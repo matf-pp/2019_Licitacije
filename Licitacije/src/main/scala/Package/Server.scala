@@ -5,17 +5,18 @@ import java.rmi.server.UnicastRemoteObject
 
 object Server {
 
-  private val DEFAULTHOST:String="127.0.0.1"
-  private val DEFAULTPORT:Int=8080
+  val DEFAULTHOST:String="127.0.0.1"
+  val DEFAULTPORT:Int=8080
   private val PERIOD=20000 //period for updates on subscribed items
   private val NUMBEROFPERIODS=10// number of periods before we update all of the items
+  private var registry:Registry=_
   def main(args : Array[String]) : Unit = {
     if(System.getSecurityManager==null)
       System.setSecurityManager(new SecurityManager())
     val implServer : ImplServer = new ImplServer()
     val serverStub : RemoteServer = UnicastRemoteObject.exportObject(implServer,0).asInstanceOf[RemoteServer]
 
-    val registry : Registry = LocateRegistry.getRegistry()
+    registry= LocateRegistry.createRegistry(DEFAULTPORT)
     registry.bind("Server", serverStub)
     implServer.openGUI()
     var counter=0
